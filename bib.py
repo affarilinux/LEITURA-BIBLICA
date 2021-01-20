@@ -1,4 +1,6 @@
 from tkinter import*
+import sqlite3
+
 
 ##############################################VARIAVEIS GLOBAIS##################
 
@@ -18,13 +20,16 @@ slate_bue_1     = "#836FFF"
 def ATIVAR_LEITURA_1_db():
 
 	def FUNCAO_CRIACAO_DE_DADOS():
+
+		
 		total_vers_bib = bib
 		
 		try:
-			total_dias_lei = qt_dias_ativar
+			total_dias_lei = qt_dias_ativar 
 			total_dias_lei = int(text_1.get())
 
 			ttl_1          = (total_vers_bib) // total_dias_lei
+			ttl_x          = total_vers_bib   %  total_dias_lei
 
 		except ZeroDivisionError:
 			borda_1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
@@ -45,7 +50,22 @@ def ATIVAR_LEITURA_1_db():
 					borda_1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
 
 			elif total_dias_lei < qt_dias_max or total_dias_lei > qt_dias_min:
-					borda_1["text"] = "TOTAL AO DIA: %d" %ttl_1    ###printar
+					borda_1["text"] = "QUANTIDADE POR DIA: {}\nRESTANTE DA LEITURA: {}". format(ttl_1,ttl_x)
+					
+					banco = sqlite3.connect('app_banco.db')                                                        #conectar ao banco de dados
+					curso = banco.cursor()
+					def criar_tabela():
+						curso.execute('CREATE TABLE IF NOT EXISTS ativar_leitura(id_ativar_leitura integer, leitura_dia integer, leitura_final integer, qt_dias integer )')
+
+					criar_tabela()	
+					
+					inserir = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
+					sql_data = (ttl_1, ttl_x, total_dias_lei)                                                      # variaveis das função
+
+					curso.execute(inserir, sql_data)                                                               # execução da chamada das funções
+					
+					banco.commit()                                                                                 #salvar  no  banco
+					banco.close()                                                                                  #sair do banco
 
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
