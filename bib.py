@@ -1,5 +1,6 @@
 from tkinter import*
 import sqlite3
+from sqlite3 import Error
 
 
 ##############################################VARIAVEIS GLOBAIS##################
@@ -50,22 +51,38 @@ def ATIVAR_LEITURA_1_db():
 					borda_1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
 
 			elif total_dias_lei < qt_dias_max or total_dias_lei > qt_dias_min:
-					borda_1["text"] = "QUANTIDADE POR DIA: {}\nRESTANTE DA LEITURA: {}". format(ttl_1,ttl_x)
+					#borda_1["text"] = "QUANTIDADE POR DIA: {}\nRESTANTE DA LEITURA: {}". format(ttl_1,ttl_x)
 					
 					banco = sqlite3.connect('app_banco.db')                                                        #conectar ao banco de dados
-					curso = banco.cursor()
-					def criar_tabela():
-						curso.execute('CREATE TABLE IF NOT EXISTS ativar_leitura(id_ativar_leitura integer, leitura_dia integer, leitura_final integer, qt_dias integer )')
+					curso = banco.cursor()                                                                        # processo de banco
 
-					criar_tabela()	
+					def criar_tabela():                                                                           # função de chamada para tabela
+
+						curso.execute('CREATE TABLE IF NOT EXISTS ativar_leitura(id_ativar_leitura integer, \
+											leitura_dia integer NOT NULL, leitura_final integer NOT NULL, \
+											qt_dias integer NOT NULL, PRIMARY KEY("id_ativar_leitura") )')         #existe tabela, se nao tiver cria
+
+					criar_tabela()	                                                                               # chamar tabela
 					
 					inserir = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
-					sql_data = (ttl_1, ttl_x, total_dias_lei)                                                      # variaveis das função
+					sql_data = (ttl_1, ttl_x, total_dias_lei)                                                      # variaveis das funções de calculo
 
 					curso.execute(inserir, sql_data)                                                               # execução da chamada das funções
 					
-					banco.commit()                                                                                 #salvar  no  banco
-					banco.close()                                                                                  #sair do banco
+					banco.commit()  
+
+					
+					def mostrar_data():
+						sql_visual = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+						curso.execute(sql_visual)
+						cf         =  curso.fetchone()
+						
+						borda_1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
+
+						
+					mostrar_data()  
+					                                                                         #salvar  no  banco
+					banco.close()                                                                                 #sair do banco
 
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
@@ -103,16 +120,16 @@ def ATIVAR_LEITURA_1_db():
 
 
 	BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
-							text        = 	"REINICIAR",
+							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =  verde_limao)
-	BT_reiniciar.place(x = 250, y = 120, width = 90 )
+	BT_reiniciar.place(x = 230, y = 120, width = 150 )
 
 	BT_apagar = Button(top_ativar_leitura_BD_1,                              ###botao - função()
-							text        = 	"APAGAR",
+							text        = 	"APAGAR LEITURA",
 							font        =  'Arial 10 bold',            
 							foreground  =  verde_limao)
-	BT_apagar.place(x = 50, y = 120, width = 90 )
+	BT_apagar.place(x = 10, y = 120, width = 150 )
 
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
