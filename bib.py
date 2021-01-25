@@ -72,15 +72,14 @@ def ATIVAR_LEITURA_1_db():
 					banco.commit()  
 
 					
-					def mostrar_data():
+					def MOSTRAR_DATA():
 						sql_visual = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
 						curso.execute(sql_visual)
 						cf         =  curso.fetchone()
 						
 						borda_1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
 
-						
-					mostrar_data()  
+					MOSTRAR_DATA()  
 					                                                                         #salvar  no  banco
 					banco.close()                                                                                 #sair do banco
 
@@ -90,6 +89,10 @@ def ATIVAR_LEITURA_1_db():
 	top_ativar_leitura_BD_1.configure    (background = madeira_robusta)       
 	top_ativar_leitura_BD_1.resizable    (False,False)
 
+	#est_rein = "disabled"
+	#def ESTADO_REINICIAR():
+		#est_rein = DISABLED
+	#ESTADO_REINICIAR()
 	lab_1= Label(top_ativar_leitura_BD_1,                                     ###label - fixa
 				text         =  "QUANTIDADE  DE DIAS: ",
 				background   =  alice_blue,                        
@@ -118,17 +121,34 @@ def ATIVAR_LEITURA_1_db():
 						background  =  madeira_robusta)                
 	borda_1.place(y = 65)
 
+	def ESTADO_REINICIAR():
 
-	BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
+		est_rein = "disabled"
+		banco_rei    = sqlite3. connect('app_banco.db')
+		cur_rei      = banco_rei.cursor()
+
+		sql_rei_data = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+		cur_rei.execute(sql_rei_data)
+		cfc          = cur_rei.fetchone()
+
+		if cfc[0] == 1:
+			est_rein = "normal"
+		
+		banco_rei.close()
+		BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
-							foreground  =  verde_limao)
-	BT_reiniciar.place(x = 230, y = 120, width = 150 )
+							foreground  =  verde_limao,
+							state = est_rein)
+		BT_reiniciar.place(x = 230, y = 120, width = 150 )
+	ESTADO_REINICIAR()
+
 
 	BT_apagar = Button(top_ativar_leitura_BD_1,                              ###botao - função()
 							text        = 	"APAGAR LEITURA",
 							font        =  'Arial 10 bold',            
-							foreground  =  verde_limao)
+							foreground  =  verde_limao,
+							state       = DISABLED)
 	BT_apagar.place(x = 10, y = 120, width = 150 )
 
 ############################
