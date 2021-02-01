@@ -53,16 +53,10 @@ def ATIVAR_LEITURA_1_db():
 			elif total_dias_lei < qt_dias_max or total_dias_lei > qt_dias_min:
 					#borda_1["text"] = "QUANTIDADE POR DIA: {}\nRESTANTE DA LEITURA: {}". format(ttl_1,ttl_x)
 					
-					banco = sqlite3.connect('app_banco.db')                                                        #conectar ao banco de dados
+					banco = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
 					curso = banco.cursor()                                                                        # processo de banco
 
-					def criar_tabela():                                                                           # função de chamada para tabela
-
-						curso.execute('CREATE TABLE IF NOT EXISTS ativar_leitura(id_ativar_leitura integer, \
-											leitura_dia integer NOT NULL, leitura_final integer NOT NULL, \
-											qt_dias integer NOT NULL, PRIMARY KEY("id_ativar_leitura") )')         #existe tabela, se nao tiver cria
-
-					criar_tabela()	                                                                               # chamar tabela
+					                                                                             
 					
 					inserir = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
 					sql_data = (ttl_1, ttl_x, total_dias_lei)                                                      # variaveis das funções de calculo
@@ -81,18 +75,20 @@ def ATIVAR_LEITURA_1_db():
 
 					MOSTRAR_DATA()  
 					                                                                         #salvar  no  banco
-					banco.close()                                                                                 #sair do banco
-
+					banco.close()                                                            #sair do banco
+	def REINICIAR():
+		banco_reiniciar = sqlite3.connect('app_banco.db')
+		cs_db = banco_reiniciar.cursor()
+		sql_rein = 'UPDATE ativar_leitura SET leitura_dia = NULL WHERE id_ativar_leitura = "1"'
+		cs_db.execute(sql_rein)
+		cs_db.commit()
+		cs_db.close()
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
 	top_ativar_leitura_BD_1.geometry     ("400x200")                         #lar x alt
 	top_ativar_leitura_BD_1.configure    (background = madeira_robusta)       
 	top_ativar_leitura_BD_1.resizable    (False,False)
 
-	#est_rein = "disabled"
-	#def ESTADO_REINICIAR():
-		#est_rein = DISABLED
-	#ESTADO_REINICIAR()
 	lab_1= Label(top_ativar_leitura_BD_1,                                     ###label - fixa
 				text         =  "QUANTIDADE  DE DIAS: ",
 				background   =  alice_blue,                        
@@ -105,7 +101,7 @@ def ATIVAR_LEITURA_1_db():
 	text_1.place(x = 185,
 		y = 18, 
 		width = 40)
-
+	
 	bt_entrada_1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
 							text        =  "SALVAR",
 							font        =  'Arial 10 bold',           
@@ -134,12 +130,14 @@ def ATIVAR_LEITURA_1_db():
 		if cfc[0] == 1:
 			est_rein = "normal"
 		
+		
 		banco_rei.close()
 		BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =  verde_limao,
-							state = est_rein)
+							state       = est_rein,
+							command     = REINICIAR )
 		BT_reiniciar.place(x = 230, y = 120, width = 150 )
 	ESTADO_REINICIAR()
 
@@ -158,7 +156,19 @@ def ATIVAR_LEITURA_1_db():
 
 def FORMULARIO_ATIVAR_LEITURA():
 
-	def FUNCAO_ATIVAR_LEITURA():                                            ####funçao
+	def CRIAR_TABELA():
+		banco_1_1_TOP = sqlite3.connect('app_banco.db')                       #conectar ao banco de dados
+		curso = banco_1_1_TOP.cursor()
+		def EXECUTAR_CRIAR_TABELA():
+			banco_1_1_TOP.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, \
+											leitura_dia   integer  NULL, \
+											leitura_final integer  NULL, \
+											qt_dias       integer  NULL )')     #existe tabela, se nao tiver cria
+		EXECUTAR_CRIAR_TABELA()
+		banco_1_1_TOP.commit()
+		banco_1_1_TOP.close()
+	CRIAR_TABELA()                                                              # chamar tabela                             
+	def FUNCAO_ATIVAR_LEITURA():                                                ####funçao
 		total_versiculo_biblico = bib
 
 		try:
@@ -235,6 +245,8 @@ def FORMULARIO_ATIVAR_LEITURA():
 					width       =  400)                   
 	butoes_para_leitura.pack(pady = 100)
 
+	
+	
 	botao_leitura_1_db  = Button(top_ativar_leitura,                        ###botao - função(ativar leitura 1 db)
 					text        =  "ATIVAR LEITURA 1",
 					background  =  branco_antigo, foreground = verde_limao,  
@@ -242,13 +254,12 @@ def FORMULARIO_ATIVAR_LEITURA():
 					width       = 	20,
 					command     =   ATIVAR_LEITURA_1_db)
 	botao_leitura_1_db.place(x= 70, y = 180)
-
+	
 #######################
 	top_ativar_leitura.mainloop()                           #********************FIM************************
 
 
-app = Tk()                                             #########janela principal####################
-
+app = Tk()                                                      #########janela principal####################                        
 app.title      ("LEITURA BIBLICA")                              ####tela principal-menus
 app.geometry   ("400x500")                                      #lar x alt
 app.configure  (background = slate_bue_1)                          
