@@ -83,6 +83,8 @@ def ATIVAR_LEITURA_1_db():
 		cs_db.execute(sql_rein)
 		cs_db.commit()
 		cs_db.close()
+
+
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
 	top_ativar_leitura_BD_1.geometry     ("400x200")                         #lar x alt
@@ -117,37 +119,56 @@ def ATIVAR_LEITURA_1_db():
 						background  =  madeira_robusta)                
 	borda_1.place(y = 65)
 
+	"""borda_1_a = Label(top_ativar_leitura_BD_1,
+				text        = "ESTADO DO BANCO",
+				font        = "Arial 10 bold",
+				background  = madeira_robusta)
+	borda_1_a.place(y = 130)"""
+
+
 	def ESTADO_REINICIAR():
+		"""def deslogar bt_reiniciar"""
 
-		est_rein = "disabled"
-		banco_rei    = sqlite3. connect('app_banco.db')
-		cur_rei      = banco_rei.cursor()
+		est_rein     = "disabled"
+		
+		try:
+			banco_rei    = sqlite3. connect('app_banco.db')
+			cur_rei      = banco_rei.cursor()
 
-		sql_rei_data = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
-		cur_rei.execute(sql_rei_data)
-		cfc          = cur_rei.fetchone()
+		#def INS_DATA():
+			#cur_rei.execute("INSERT INTO ativar_leitura( leitura_dia, leitura_final, qt_dias) VALUES (1, 1, 1)")
 
-		if cfc[0] == 1:
-			est_rein = "normal"
+
+			sql_rei_data = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+			cur_rei.execute(sql_rei_data)
+			cfc          = cur_rei.fetchone()
+
+			if cfc[0] == 1:
+				est_rein = "normal"
 		
 		
-		banco_rei.close()
-		BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
+			banco_rei.close()
+
+		except TypeError:
+			
+
+		else:
+			BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =  verde_limao,
 							state       = est_rein,
 							command     = REINICIAR )
-		BT_reiniciar.place(x = 230, y = 120, width = 150 )
+			BT_reiniciar.place(x = 230, y = 120, width = 150 )
 	ESTADO_REINICIAR()
 
 
-	BT_apagar = Button(top_ativar_leitura_BD_1,                              ###botao - função()
+	"""BT_apagar = Button(top_ativar_leitura_BD_1,                              ###botao - função()
 							text        = 	"APAGAR LEITURA",
 							font        =  'Arial 10 bold',            
 							foreground  =  verde_limao,
 							state       = DISABLED)
-	BT_apagar.place(x = 10, y = 120, width = 150 )
+	BT_apagar.place(x = 10, y = 120, width = 150 )"""
 
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
@@ -160,7 +181,7 @@ def FORMULARIO_ATIVAR_LEITURA():
 		banco_1_1_TOP = sqlite3.connect('app_banco.db')                       #conectar ao banco de dados
 		curso = banco_1_1_TOP.cursor()
 		def EXECUTAR_CRIAR_TABELA():
-			banco_1_1_TOP.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, \
+			banco_1_1_TOP.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY , \
 											leitura_dia   integer  NULL, \
 											leitura_final integer  NULL, \
 											qt_dias       integer  NULL )')     #existe tabela, se nao tiver cria
