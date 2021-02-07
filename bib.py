@@ -171,135 +171,140 @@ def ATIVAR_LEITURA_1_db():
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
 
-	                                     #######################janela ativar leitura - pai- janela principal##################
+	                                    ######################janela ativar leitura - pai- janela principal##################
+################################################################################################################################2
+def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
-def FORMULARIO_ATIVAR_LEITURA():
+	def BASIC_SEC_AUTOEXE_cc_CRIAR_BANCO():                                                                ###cria banco
 
-	def CRIAR_TABELA():
-		banco_1_1_TOP = sqlite3.connect('app_banco.db')                       #conectar ao banco de dados
-		curso = banco_1_1_TOP.cursor()
-		def EXECUTAR_CRIAR_TABELA():
-			banco_1_1_TOP.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY , \
+		BD_SIST_SEC_nn_APPBANCO = sqlite3.connect('app_banco.db')                                           
+		CURSOR_APPBANCO         = BD_SIST_SEC_nn_APPBANCO.cursor()
+
+		def FuncaoBase_SEC_AUTOEXE_ee_CRIAR_TABELA():
+
+			BD_SIST_SEC_nn_APPBANCO.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY , \
 											leitura_dia   integer  NULL, \
 											leitura_final integer  NULL, \
-											qt_dias       integer  NULL )')     #existe tabela, se nao tiver cria
-		EXECUTAR_CRIAR_TABELA()
-		banco_1_1_TOP.commit()
-		banco_1_1_TOP.close()
-	CRIAR_TABELA()                                                              # chamar tabela                             
-	def FUNCAO_ATIVAR_LEITURA():                                                ####funçao
-		total_versiculo_biblico = bib
+											qt_dias       integer  NULL )')#existe tabela, se nao tiver cria
+
+		FuncaoBase_SEC_AUTOEXE_ee_CRIAR_TABELA()
+
+		BD_SIST_SEC_nn_APPBANCO.commit()
+		BD_SIST_SEC_nn_APPBANCO.close()
+
+	BASIC_SEC_AUTOEXE_cc_CRIAR_BANCO()                                                                     # chamar tabela   
+
+
+	def BASIC_SEC_CHAMADABTINT_cc_CALCULO_sSALVAR():                                                
+		total_versiculo_biblico_sSALVAR = bib
 
 		try:
-			total_dias_leitura  = qt_dias_ativar
-			total_dias_leitura  = int (text_button_1.get())
+			total_dias_leitura_sSALVAR  = qt_dias_ativar
+			total_dias_leitura_sSALVAR  = int (ENTRY_TEXT_plano4_WIND_SECUNDARIO_zz_entry4interno_A_1.get())
 
-			total_1             = ( total_versiculo_biblico ) // total_dias_leitura
+			TOTAL_CALCULO_sSALVAR       = ( total_versiculo_biblico_sSALVAR ) // total_dias_leitura_sSALVAR
 
 		except ZeroDivisionError:
-			borda_mostrar_1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"]     = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except ValueError:
-			borda_mostrar_1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"]     = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except KeyboardInterrupt:
-			borda_mostrar_1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"]     = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except TypeError:
-			borda_mostrar_1["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"]     = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		else:	
-			total_dias_leitura
+			total_dias_leitura_sSALVAR
 
-			if   total_dias_leitura > qt_dias_max:                                   
-					borda_mostrar_1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."            
+			if   total_dias_leitura_sSALVAR > qt_dias_max:    
 
-			elif total_dias_leitura < qt_dias_max or total_dias_leitura > qt_dias_min:
-					borda_mostrar_1["text"] = "TOTAL AO DIA: %d" %total_1    ###printar
+					LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."            
 
-	top_ativar_leitura = Toplevel()                                        #### ATIVADO ATRAVEZ DO BOTAO JANELA PRINCIPAL
+			elif total_dias_leitura_sSALVAR < qt_dias_max or total_dias_leitura_sSALVAR > qt_dias_min:
+
+					LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"] = "TOTAL AO DIA: %d" %TOTAL_CALCULO_sSALVAR
+
+	#######################################
+	top_ativar_leitura = Toplevel()############################## ATIVADO ATRAVEZ DO BOTAO JANELA PRINCIPAL###
 	top_ativar_leitura.title       ("ATIVAR LEITURA")
-	top_ativar_leitura.geometry    ("400x400")                             #lar x alt
+	top_ativar_leitura.geometry    ("400x400")                   #lar x alt
 	top_ativar_leitura.configure   (background = madeira_robusta)      
 	top_ativar_leitura.resizable   (False,False)
 
-	label_at_lei_1 = Label(top_ativar_leitura,                              ###label-expandida
-					text        =  "CALCULO DE VERSICULO POR DIA",
-					background  =  deep_skyblue,                   
-					font        =  'Arial 15 bold',                    
-					width       =   400)                   
-	label_at_lei_1.pack(pady = 5)
+	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1  = Label(top_ativar_leitura,                             		 ###label-expandida
+								 text        =  "CALCULO DE VERSICULO POR DIA",
+								 background  =  deep_skyblue,                   
+								 font        =  'Arial 15 bold',                    
+								 width       =   400)                   
+	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1.pack(pady = 5)
 	
 				
-	label_button_1= Label(top_ativar_leitura,                                ###label - fixa                                  
-				text        =  "QUANTIDADE  DE DIAS: ",
-				background  =  alice_blue,                         
-				font        =  'Arial 10 bold',
-				width       =  25)
+	LBL_FXBASIC_WIND_SECUNDARIO_zz_lblbasic_A_1   = Label(top_ativar_leitura,                                ###label - fixa                                  
+									  text        =  "QUANTIDADE  DE DIAS: ",
+									  background  =  alice_blue,                         
+									  font        =  'Arial 10 bold',
+									  width       =  25)
 				
-	label_button_1.place(y = 50)
+	LBL_FXBASIC_WIND_SECUNDARIO_zz_lblbasic_A_1.place(y = 50)
 
-	text_button_1 = Entry(top_ativar_leitura)                              ###entry++
-	text_button_1.place(x = 185,
-				y = 48, 
-				width = 40)
+	ENTRY_TEXT_plano4_WIND_SECUNDARIO_zz_entry4interno_A_1 = Entry(top_ativar_leitura)                       ###entry++
+	ENTRY_TEXT_plano4_WIND_SECUNDARIO_zz_entry4interno_A_1.place(x = 185, y = 48, width = 40)
 
-	bt_entrada_calculo_1 = Button(top_ativar_leitura,                      ###botao - função( função ativar leitura)
-							text        = 	"CALCULAR",
-							font        =  'Arial 10 bold',            
-							foreground  =   verde_limao,
-							command     =   FUNCAO_ATIVAR_LEITURA)
-	bt_entrada_calculo_1.place(x = 230, y = 48, width = 90 )
+	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1  = Button(top_ativar_leitura,                     				 ###botao - função( função ativar leitura)
+								  text        = 	"CALCULAR",
+								  font        =  'Arial 10 bold',            
+								  foreground  =   verde_limao,
+								  command     =   BASIC_SEC_CHAMADABTINT_cc_CALCULO_sSALVAR)
+	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1.place(x = 230, y = 48, width = 90 )
 							
-	borda_mostrar_1 = Label(top_ativar_leitura,                            ###label-movel--
-						text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
-						font        =  "Arial 10 bold",
-						background  =  madeira_robusta)               
-	borda_mostrar_1.place(y = 90)
+	LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1 = Label(top_ativar_leitura,                            			###label-movel--
+							  text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
+							  font        =  "Arial 10 bold",
+							  background  =  madeira_robusta)               
+	LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1.place(y = 90)
 	
-	butoes_para_leitura = Label(top_ativar_leitura,                        ###label-expandida
-					text        =  "ESCOLHA QUAL É PARA ATIVAR",
-					background  =  deep_skyblue,                   
-					font        =  'Arial 15 bold',                    
-					width       =  400)                   
-	butoes_para_leitura.pack(pady = 100)
+	LBL_fxesp_WIND_SECUNDARIO_zz_lblesp_a_1  = Label(top_ativar_leitura,                        			###label-expandida
+								 text        =  "ATIVAR LEITURA",		
+								 background  =  deep_skyblue,                   
+								 font        =  'Arial 15 bold',                    
+								 width       =  400)                   
+	LBL_fxesp_WIND_SECUNDARIO_zz_lblesp_a_1.pack(pady = 100)
 
-	
-	
-	botao_leitura_1_db  = Button(top_ativar_leitura,                        ###botao - função(ativar leitura 1 db)
+	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1 = Button(top_ativar_leitura,                       					 ###botao - função(ativar leitura 1 db)
 					text        =  "ATIVAR LEITURA 1",
 					background  =  branco_antigo, foreground = verde_limao,  
 					font        =  'Arial 15 bold',
 					width       = 	20,
 					command     =   ATIVAR_LEITURA_1_db)
-	botao_leitura_1_db.place(x= 70, y = 180)
+	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1.place(x= 70, y = 180)
 	
-#######################
-	top_ativar_leitura.mainloop()                           #********************FIM************************
+#################################
+	top_ativar_leitura.mainloop()#########################********************FIM************************#
 
-
-app = Tk()                                                      #########janela principal####################                        
-app.title      ("LEITURA BIBLICA")                              ####tela principal-menus
-app.geometry   ("400x500")                                      #lar x alt
+##################################################################################################################1
+app = Tk()                        #####################janela principal####################                        
+app.title      ("LEITURA BIBLICA")                                                         ####tela principal-menus
+app.geometry   ("400x500")               #lar x alt                                                  
 app.configure  (background = slate_bue_1)                          
 app.resizable  (False,False)
 
+LBL_fxexp_WIND_PRINC_zz_lblexp_1 	= Label(app,                                           ###label - expandida
+					 text       =  "CONFIGURAÇÕES",
+				   	 background =  blue_violet,                         
+					 font       =  'Arial 20 bold',
+					 width      =  400)
+LBL_fxexp_WIND_PRINC_zz_lblexp_1.pack()
 						
-label_aap_1 = Label(app,                                        ###label - expandida
-				text       =  "CONFIGURAÇÕES",
-				background =  blue_violet,                         
-				font       =  'Arial 20 bold',
-				width      =  400)
-label_aap_1.pack()
-						
+BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1  = Button(app,                                       ###botao - funçao (formulario ativar leitura)
+						   text       =  "ATIVAR LEITURA",
+						   background =  branco_antigo, foreground = verde_limao,   
+						   font       =  'Arial 15 bold',
+						   width      =  20,
+						   command    =  FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA)
+BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1.pack(pady = 40)
 
-btn_app_1   = Button(app,                                       ###botao - funçao (formulario ativar leitura)
-				text       =  "ATIVAR LEITURA",
-				background =  branco_antigo, foreground = verde_limao,   
-				font       =  'Arial 15 bold',
-				width      =  20,
-				command    =  FORMULARIO_ATIVAR_LEITURA)
-btn_app_1.pack(pady = 40)
-
-####
-app. mainloop()                                                  ###**********FIM***********************
+########################
+app. mainloop()################################**********FIM***********************#
