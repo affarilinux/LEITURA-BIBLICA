@@ -20,9 +20,10 @@ slate_bue_1     = "#836FFF"
 									#################janela ativar leitura 1 - pai- janela ativar leitura#######
 def ATIVAR_LEITURA_1_db():
 
+	
 	def FUNCAO_CRIACAO_DE_DADOS():
-
 		
+		SWITH_2()
 		total_vers_bib = bib
 		
 		try:
@@ -36,7 +37,7 @@ def ATIVAR_LEITURA_1_db():
 			borda_1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except ValueError:
-			borda_1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			borda_1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "#$ERRO AO CLICAR EM VALOR NOME CARACTERE
 
 		except KeyboardInterrupt:
 			borda_1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
@@ -91,6 +92,15 @@ def ATIVAR_LEITURA_1_db():
 	top_ativar_leitura_BD_1.configure    (background = madeira_robusta)       
 	top_ativar_leitura_BD_1.resizable    (False,False)
 
+	def SWITH_1():
+		bt_entrada_1["state"] = "normal"
+		BT_reiniciar["state"] = "disabled"
+
+	def SWITH_2():
+		bt_entrada_1["state"] = "disabled"
+		BT_reiniciar["state"] = "normal"
+	
+
 	lab_1= Label(top_ativar_leitura_BD_1,                                     ###label - fixa
 				text         =  "QUANTIDADE  DE DIAS: ",
 				background   =  alice_blue,                        
@@ -100,9 +110,7 @@ def ATIVAR_LEITURA_1_db():
 	lab_1.place(y = 20)
 
 	text_1 = Entry(top_ativar_leitura_BD_1)                                   ###entry++
-	text_1.place(x = 185,
-		y = 18, 
-		width = 40)
+	text_1.place(x = 185, y = 18, width = 40)
 	
 	bt_entrada_1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
 							text        =  "SALVAR",
@@ -120,55 +128,45 @@ def ATIVAR_LEITURA_1_db():
 	borda_1.place(y = 65)
 
 	"""borda_1_a = Label(top_ativar_leitura_BD_1,
-				text        = "ESTADO DO BANCO",
+				text        = "",
 				font        = "Arial 10 bold",
 				background  = madeira_robusta)
 	borda_1_a.place(y = 130)"""
 
 
-	def ESTADO_REINICIAR():
-		"""def deslogar bt_reiniciar"""
+	
 
-		est_rein     = "disabled"
+	BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
+							text        = 	"REINICIAR LEITURA",
+							font        =   'Arial 10 bold',            
+							foreground  =   verde_limao,
+							command     =   REINICIAR )
+	BT_reiniciar.place(x = 230, y = 120, width = 150 )
+
+
+
+	def ESTADO_REINICIAR():
 		
 		try:
 			banco_rei    = sqlite3. connect('app_banco.db')
 			cur_rei      = banco_rei.cursor()
-
-		#def INS_DATA():
-			#cur_rei.execute("INSERT INTO ativar_leitura( leitura_dia, leitura_final, qt_dias) VALUES (1, 1, 1)")
-
 
 			sql_rei_data = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
 			cur_rei.execute(sql_rei_data)
 			cfc          = cur_rei.fetchone()
 
 			if cfc[0] == 1:
-				est_rein = "normal"
-		
-		
-			banco_rei.close()
-
+				SWITH_2()
+				#est_rein = "normal"
 		except TypeError:
+			#borda_1_a["text"] = "REGISTRO INEXISTENTE"
+			SWITH_1()
+		#else:
 			
-
-		else:
-			BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
-							text        = 	"REINICIAR LEITURA",
-							font        =   'Arial 10 bold',            
-							foreground  =  verde_limao,
-							state       = est_rein,
-							command     = REINICIAR )
-			BT_reiniciar.place(x = 230, y = 120, width = 150 )
+			#SWITH_2()
+			
+			banco_rei.close()
 	ESTADO_REINICIAR()
-
-
-	"""BT_apagar = Button(top_ativar_leitura_BD_1,                              ###botao - função()
-							text        = 	"APAGAR LEITURA",
-							font        =  'Arial 10 bold',            
-							foreground  =  verde_limao,
-							state       = DISABLED)
-	BT_apagar.place(x = 10, y = 120, width = 150 )"""
 
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
