@@ -2,7 +2,7 @@ from tkinter import*
 import sqlite3
 from sqlite3 import Error
 
-
+##python3.9 tes.py
 ##############################################VARIAVEIS GLOBAIS##################
 
 bib             = 31102                      #QUANTIDADE DE VERSICULO BIBLICO
@@ -17,66 +17,66 @@ deep_skyblue    = "#00BFFF"
 branco_antigo   = "#FAEBD7"
 blue_violet     = "#8A2BE2"
 slate_bue_1     = "#836FFF"
-									#################janela ativar leitura 1 - pai- janela ativar leitura#######
-def ATIVAR_LEITURA_1_db():
 
-	
-	def FUNCAO_CRIACAO_DE_DADOS():
+####################################################janela ativar leitura 1 - pai- janela ativar leitura#######
+################################################################################################################
+def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
+######################################################funcoes ternarias LH1############################################
+
+	def BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1():
 		
-		SWITH_2()
-		total_vers_bib = bib
+		total_vers_bib_BB_LH1 = bib
 		
 		try:
-			total_dias_lei = qt_dias_ativar 
-			total_dias_lei = int(text_1.get())
+			total_dias_lei_BB_LH1 = qt_dias_ativar 
+			total_dias_lei_BB_LH1 = int(ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t1.get())
 
-			ttl_1          = (total_vers_bib) // total_dias_lei
-			ttl_x          = total_vers_bib   %  total_dias_lei
+			CALCULO_INTEIRO_LH1	  = (total_vers_bib_BB_LH1) // total_dias_lei_BB_LH1
+			CALCULO_PARCIAL_LH1   = total_vers_bib_BB_LH1   %  total_dias_lei_BB_LH1
 
 		except ZeroDivisionError:
-			borda_1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except ValueError:
-			borda_1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "#$ERRO AO CLICAR EM VALOR NOME CARACTERE
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       								#$ERRO AO CLICAR EM VALOR NOME CARACTERE
 
 		except KeyboardInterrupt:
-			borda_1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		except TypeError:
-			borda_1["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
 		else:	
-			total_dias_lei
+			total_dias_lei_BB_LH1
 
-			if   total_dias_lei > qt_dias_max:
-					borda_1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
+			if   total_dias_lei_BB_LH1 > qt_dias_max:
+					LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
 
-			elif total_dias_lei < qt_dias_max or total_dias_lei > qt_dias_min:
-					#borda_1["text"] = "QUANTIDADE POR DIA: {}\nRESTANTE DA LEITURA: {}". format(ttl_1,ttl_x)
+			elif total_dias_lei_BB_LH1 < qt_dias_max or total_dias_lei_BB_LH1 > qt_dias_min:
+
+					BD_SIST_TERC_nn_SALdata_imp = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
+					CURSOR_DB_EXE_lh1 = BD_SIST_TERC_nn_SALdata_imp.cursor()                                                            # processo de banco
+
+					inserir_valordb_calc_LH1     = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
+					variav_valor_calc_SQLDATA_LH1 = (CALCULO_INTEIRO_LH1, CALCULO_PARCIAL_LH1, total_dias_lei_BB_LH1)                   # variaveis das funções de calculo
+
+					CURSOR_DB_EXE_lh1.execute(inserir_valordb_calc_LH1, variav_valor_calc_SQLDATA_LH1)                                  # execução da chamada das funções
 					
-					banco = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
-					curso = banco.cursor()                                                                        # processo de banco
-
-					                                                                             
-					
-					inserir = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
-					sql_data = (ttl_1, ttl_x, total_dias_lei)                                                      # variaveis das funções de calculo
-
-					curso.execute(inserir, sql_data)                                                               # execução da chamada das funções
-					
-					banco.commit()  
+					BD_SIST_TERC_nn_SALdata_imp.commit()                                                                                 #SALVAR
 
 					
-					def MOSTRAR_DATA():
-						sql_visual = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
-						curso.execute(sql_visual)
-						cf         =  curso.fetchone()
+					def FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH1():
+						sql_visual_lh1 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+						CURSOR_DB_EXE_lh1.execute(sql_visual_lh1)
+						cf         =  CURSOR_DB_EXE_lh1.fetchone()
 						
-						borda_1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
+						LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
 
-					MOSTRAR_DATA()  
-					                                                                         #salvar  no  banco
-					banco.close()                                                            #sair do banco
+					FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH1()  
+					                                                                         
+					BD_SIST_TERC_nn_SALdata_imp.close()  #sair do banco
+
+					TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK
 	def REINICIAR():
 		banco_reiniciar = sqlite3.connect('app_banco.db')
 		cs_db = banco_reiniciar.cursor()
@@ -85,47 +85,68 @@ def ATIVAR_LEITURA_1_db():
 		cs_db.commit()
 		cs_db.close()
 
-
+########################################janela inserir dados- pai janela secundaria######
+###########################################################################################
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
 	top_ativar_leitura_BD_1.geometry     ("400x200")                         #lar x alt
 	top_ativar_leitura_BD_1.configure    (background = madeira_robusta)       
 	top_ativar_leitura_BD_1.resizable    (False,False)
 
-	def SWITH_1():
-		bt_entrada_1["state"] = "normal"
-		BT_reiniciar["state"] = "disabled"
+############################################FUNCOES DE HABILITACAO
+	def TOP_TERC_SWITH_STATE_PT1():
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = "normal"
+		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = "disabled"
 
-	def SWITH_2():
-		bt_entrada_1["state"] = "disabled"
-		BT_reiniciar["state"] = "normal"
-	
+	def TOP_TERC_SWITH_STATE_PT2():
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = "disabled"
+		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = "normal"
 
-	lab_1= Label(top_ativar_leitura_BD_1,                                     ###label - fixa
-				text         =  "QUANTIDADE  DE DIAS: ",
-				background   =  alice_blue,                        
-				font         =  'Arial 10 bold',
-				width        =  25)
+#####################################################FUNCOES DO SISTEMA DO TOP
+	def FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1():
+		
+		try:
+			banco_rei    = sqlite3. connect('app_banco.db')
+			cur_rei      = banco_rei.cursor()
+
+			sql_rei_data_lh1 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+			cur_rei.execute(sql_rei_data_lh1)
+			cfc          = cur_rei.fetchone()
+
+			if cfc[0] == 1:
+				TOP_TERC_SWITH_STATE_PT2()
 				
-	lab_1.place(y = 20)
+		except TypeError:
+			
+			TOP_TERC_SWITH_STATE_PT1()
+					
+			banco_rei.close()
 
-	text_1 = Entry(top_ativar_leitura_BD_1)                                   ###entry++
-	text_1.place(x = 185, y = 18, width = 40)
+
+################################################SISTEMA DO TK
+	LBL_fxbasic_WIND_TERC_zz_lblfx_t1    = Label(top_ativar_leitura_BD_1,                                     ###label - fixa
+							text         =  "QUANTIDADE  DE DIAS: ",
+							background   =  alice_blue,                        
+							font         =  'Arial 10 bold',
+							width        =  25)
+	LBL_fxbasic_WIND_TERC_zz_lblfx_t1.place(y = 20)
+
+	ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t1 = Entry(top_ativar_leitura_BD_1)                                   ###entry++
+	ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t1.place(x = 185, y = 18, width = 40)
 	
-	bt_entrada_1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
-							text        =  "SALVAR",
-							font        =  'Arial 10 bold',           
-							foreground  =  verde_limao,
-							command     =  FUNCAO_CRIACAO_DE_DADOS)
-							
-	bt_entrada_1.place(x = 230, y = 18, width = 90 )
+	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
+								text        =  "SALVAR",
+								font        =  'Arial 10 bold',           
+								foreground  =  verde_limao,
+								command     =  BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1)
+	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1.place(x = 230, y = 18, width = 90 )
 
 
-	borda_1 = Label(top_ativar_leitura_BD_1,                                 ###labe1 --
-						text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
-						font        =  "Arial 10 bold",
-						background  =  madeira_robusta)                
-	borda_1.place(y = 65)
+	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1    = Label(top_ativar_leitura_BD_1,                                 ###labe1 --
+									text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
+									font        =  "Arial 10 bold",
+									background  =  madeira_robusta)                
+	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1.place(y = 65)
 
 	"""borda_1_a = Label(top_ativar_leitura_BD_1,
 				text        = "",
@@ -136,37 +157,14 @@ def ATIVAR_LEITURA_1_db():
 
 	
 
-	BT_reiniciar = Button(top_ativar_leitura_BD_1,                           ###botao - função()
+	BT_vrd_WIND_TERC_zz_btvrd_t1 = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =   verde_limao,
 							command     =   REINICIAR )
-	BT_reiniciar.place(x = 230, y = 120, width = 150 )
+	BT_vrd_WIND_TERC_zz_btvrd_t1.place(x = 230, y = 120, width = 150 )
 
-
-
-	def ESTADO_REINICIAR():
-		
-		try:
-			banco_rei    = sqlite3. connect('app_banco.db')
-			cur_rei      = banco_rei.cursor()
-
-			sql_rei_data = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
-			cur_rei.execute(sql_rei_data)
-			cfc          = cur_rei.fetchone()
-
-			if cfc[0] == 1:
-				SWITH_2()
-				#est_rein = "normal"
-		except TypeError:
-			#borda_1_a["text"] = "REGISTRO INEXISTENTE"
-			SWITH_1()
-		#else:
-			
-			#SWITH_2()
-			
-			banco_rei.close()
-	ESTADO_REINICIAR()
+	FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1()
 
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
@@ -174,6 +172,7 @@ def ATIVAR_LEITURA_1_db():
 	                                    ######################janela ativar leitura - pai- janela principal##################
 ################################################################################################################################2
 def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
+#######################################################################funcoes secundaria########################
 
 	def BASIC_SEC_AUTOEXE_cc_CRIAR_BANCO():                                                                ###cria banco
 
@@ -278,7 +277,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					background  =  branco_antigo, foreground = verde_limao,  
 					font        =  'Arial 15 bold',
 					width       = 	20,
-					command     =   ATIVAR_LEITURA_1_db)
+					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1.place(x= 70, y = 180)
 	
 #################################
