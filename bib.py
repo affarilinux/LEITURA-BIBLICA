@@ -88,6 +88,9 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 		BD_ap_1.commit()
 		BD_ap_1.close()
 		
+		LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "ESCOLHA DE 1 DIA ATÉ 3285 DIAS."
+		LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "LEITURA APAGADO\n COM SUCESSO"
+
 		TOP_TERC_SWITH_STATE_PT1()
 ########################################janela inserir dados- pai janela secundaria######
 ###########################################################################################
@@ -181,7 +184,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	
 
 	BT_vrd_WIND_TERC_zz_btvrd_t1 = Button(top_ativar_leitura_BD_1,                           ###botao - função()
-							text        = 	"REINICIAR LEITURA",
+							text        = 	"APAGAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =   verde_limao,
 							command     =   BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1 )
