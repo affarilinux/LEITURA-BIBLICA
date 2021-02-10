@@ -76,7 +76,9 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 					                                                                         
 					BD_SIST_TERC_nn_SALdata_imp.close()  #sair do banco
 
+					LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS SALVO COM SUCESSO"
 					TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK
+
 	def REINICIAR():
 		banco_reiniciar = sqlite3.connect('app_banco.db')
 		cs_db = banco_reiniciar.cursor()
@@ -106,7 +108,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	def FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1():
 		
 		try:
-			banco_rei    = sqlite3. connect('app_banco.db')
+			banco_rei    = sqlite3.connect('app_banco.db')
 			cur_rei      = banco_rei.cursor()
 
 			sql_rei_data_lh1 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
@@ -122,7 +124,27 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 					
 			banco_rei.close()
 
+	def FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH1():
+		try:
+			BD_imp_lh1     = sqlite3.connect('app_banco.db')
+			CUR_exe_bd_lh1 = BD_imp_lh1.cursor()
 
+			sql_vis_lh_1   = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+			CUR_exe_bd_lh1.execute(sql_vis_lh_1)
+			csf_lh1 = CUR_exe_bd_lh1.fetchone()
+
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(csf_lh1[1],csf_lh1[2],csf_lh1[3])
+
+			BD_imp_lh1.close()
+
+		except AttributeError:
+
+			LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS INEXISTENTE"
+
+		except TypeError:
+
+			LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS INEXISTENTE"
+			
 ################################################SISTEMA DO TK
 	LBL_fxbasic_WIND_TERC_zz_lblfx_t1    = Label(top_ativar_leitura_BD_1,                                     ###label - fixa
 							text         =  "QUANTIDADE  DE DIAS: ",
@@ -142,17 +164,16 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1.place(x = 230, y = 18, width = 90 )
 
 
-	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1    = Label(top_ativar_leitura_BD_1,                                 ###labe1 --
+	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1    = Label(top_ativar_leitura_BD_1,                                 ###labe1 -- de funçao
 									text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
 									font        =  "Arial 10 bold",
 									background  =  madeira_robusta)                
 	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1.place(y = 65)
 
-	"""borda_1_a = Label(top_ativar_leitura_BD_1,
-				text        = "",
-				font        = "Arial 10 bold",
-				background  = madeira_robusta)
-	borda_1_a.place(y = 130)"""
+	LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1   = Label(top_ativar_leitura_BD_1,
+								font        = "Arial 10 bold",
+								background  = madeira_robusta)
+	LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1.place(y = 130)
 
 
 	
@@ -165,6 +186,8 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	BT_vrd_WIND_TERC_zz_btvrd_t1.place(x = 230, y = 120, width = 150 )
 
 	FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1()
+
+	FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH1()
 
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
