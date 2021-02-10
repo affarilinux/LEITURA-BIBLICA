@@ -23,7 +23,7 @@ slate_bue_1     = "#836FFF"
 def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 ######################################################funcoes ternarias LH1############################################
 
-	def BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1():
+	def BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1():                                                           # adicona no banco
 		
 		total_vers_bib_BB_LH1 = bib
 		
@@ -62,7 +62,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 					CURSOR_DB_EXE_lh1.execute(inserir_valordb_calc_LH1, variav_valor_calc_SQLDATA_LH1)                                  # execução da chamada das funções
 					
-					BD_SIST_TERC_nn_SALdata_imp.commit()                                                                                 #SALVAR
+					BD_SIST_TERC_nn_SALdata_imp.commit()                                                                                #SALVAR
 
 					
 					def FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH1():
@@ -79,14 +79,16 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 					LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS SALVO COM SUCESSO"
 					TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK
 
-	def REINICIAR():
-		banco_reiniciar = sqlite3.connect('app_banco.db')
-		cs_db = banco_reiniciar.cursor()
-		sql_rein = 'UPDATE ativar_leitura SET leitura_dia = NULL WHERE id_ativar_leitura = "1"'
-		cs_db.execute(sql_rein)
-		cs_db.commit()
-		cs_db.close()
+	def BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1():                                                                                  # apagar do banco
+		BD_ap_1 = sqlite3.connect('app_banco.db')
+		CURSOR_ap_lh1 = BD_ap_1.cursor()
+		sql_rein = 'DELETE FROM ativar_leitura WHERE id_ativar_leitura = 1'
+		CURSOR_ap_lh1.execute(sql_rein)
 
+		BD_ap_1.commit()
+		BD_ap_1.close()
+		
+		TOP_TERC_SWITH_STATE_PT1()
 ########################################janela inserir dados- pai janela secundaria######
 ###########################################################################################
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
@@ -182,7 +184,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 							text        = 	"REINICIAR LEITURA",
 							font        =   'Arial 10 bold',            
 							foreground  =   verde_limao,
-							command     =   REINICIAR )
+							command     =   BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1 )
 	BT_vrd_WIND_TERC_zz_btvrd_t1.place(x = 230, y = 120, width = 150 )
 
 	FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1()
