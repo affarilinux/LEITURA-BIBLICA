@@ -26,8 +26,12 @@ BT_ativo        = "normal"
 
 ############################################### CARACTERISTICA ESCRITA
 
-esc_BT_vGB_1 = "Arial 15 bold"
-esc_BT_vGB_2 = "Arial 10 bold"
+esc_BT_vGB_15 = "Arial 15 bold"
+esc_BT_vGB_10 = "Arial 10 bold"
+
+esc_LBL_vGB_20 = "Arial 20 bold"
+esc_LBL_vGB_15 = "Arial 15 bold"
+esc_LBL_vGB_10 = "Arial 10 bold"
 
 ######################################################################################################################
 				#######################janela ativar leitura 1 - pai- janela ativar leitura##############
@@ -172,7 +176,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	LBL_fxbasic_WIND_TERC_zz_lblfx_t1    = Label(top_ativar_leitura_BD_1,                                     ###label - fixa
 							text         =  "QUANTIDADE  DE DIAS: ",
 							background   =  alice_blue,                        
-							font         =  'Arial 10 bold',
+							font         =  esc_LBL_vGB_10,
 							width        =  25)
 	LBL_fxbasic_WIND_TERC_zz_lblfx_t1.place(y = 20)
 
@@ -181,7 +185,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	
 	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
 								text        =  "SALVAR",
-								font        =  esc_BT_vGB_1,           
+								font        =  esc_BT_vGB_15,           
 								foreground  =  verde_limao,
 								command     =  BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1)
 	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1.place(x = 230, y = 18, width = 90 )
@@ -189,21 +193,18 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1    = Label(top_ativar_leitura_BD_1,                                 ###labe1 -- de funçao
 									text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
-									font        =  "Arial 10 bold",
+									font        =  esc_LBL_vGB_10,
 									background  =  madeira_robusta)                
 	LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1.place(y = 65)
 
 	LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1   = Label(top_ativar_leitura_BD_1,
-								font        = "Arial 10 bold",
+								font        = esc_LBL_vGB_10,
 								background  = madeira_robusta)
 	LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1.place(y = 130)
 
-
-	
-
 	BT_vrd_WIND_TERC_zz_btvrd_t1 = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"APAGAR LEITURA",
-							font        =   esc_BT_vGB_2,            
+							font        =   esc_BT_vGB_10,            
 							foreground  =   verde_limao,
 							command     =   BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1 )
 	BT_vrd_WIND_TERC_zz_btvrd_t1.place(x = 230, y = 120, width = 150 )
@@ -300,7 +301,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1  = Label(top_ativar_leitura,                             		 ###label-expandida
 								 text        =  "CALCULO DE VERSICULO POR DIA",
 								 background  =  deep_skyblue,                   
-								 font        =  'Arial 15 bold',                    
+								 font        =  esc_LBL_vGB_15,                    
 								 width       =   400)                   
 	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1.pack(pady = 5)
 	
@@ -308,7 +309,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 	LBL_FXBASIC_WIND_SECUNDARIO_zz_lblbasic_A_1   = Label(top_ativar_leitura,                                ###label - fixa                                  
 									  text        =  "QUANTIDADE  DE DIAS: ",
 									  background  =  alice_blue,                         
-									  font        =  'Arial 10 bold',
+									  font        =  esc_LBL_vGB_10,
 									  width       =  25)
 				
 	LBL_FXBASIC_WIND_SECUNDARIO_zz_lblbasic_A_1.place(y = 50)
@@ -318,28 +319,28 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1  = Button(top_ativar_leitura,                     				 ###botao - função( função ativar leitura)
 								  text        = 	"CALCULAR",
-								  font        =  esc_BT_vGB_2,            
+								  font        =  esc_BT_vGB_10,            
 								  foreground  =   verde_limao,
 								  command     =   BASIC_SEC_CHAMADABTINT_cc_CALCULO_sSALVAR)
 	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1.place(x = 230, y = 48, width = 90 )
 							
 	LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1 = Label(top_ativar_leitura,                            			###label-movel--
 							  text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
-							  font        =  "Arial 10 bold",
+							  font        =  esc_LBL_vGB_10,
 							  background  =  madeira_robusta)               
 	LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1.place(y = 90)
 	
 	LBL_fxesp_WIND_SECUNDARIO_zz_lblesp_a_1  = Label(top_ativar_leitura,                        			###label-expandida
 								 text        =  "ATIVAR LEITURA",		
 								 background  =  deep_skyblue,                   
-								 font        =  'Arial 15 bold',                    
+								 font        =  esc_LBL_vGB_15,                    
 								 width       =  400)                   
 	LBL_fxesp_WIND_SECUNDARIO_zz_lblesp_a_1.pack(pady = 100)
 
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1 = Button(top_ativar_leitura,                       					 ###botao - função(ativar leitura 1 db)
 					text        =  "ATIVAR LEITURA 1",
 					background  =  branco_antigo, foreground = verde_limao,  
-					font        =  esc_BT_vGB_1,
+					font        =  esc_BT_vGB_15,
 					width       = 	20,
 					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1.place(x= 70, y = 180)
@@ -347,7 +348,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_2 = Button(top_ativar_leitura,                       					 ###botao - função(ativar leitura 2 db)
 					text        =  "ATIVAR LEITURA 2",
 					background  =  branco_antigo, foreground = verde_limao,  
-					font        =  esc_BT_vGB_1,
+					font        =  esc_BT_vGB_15,
 					width       = 	20,
 					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_2.place(x= 70, y = 230)
@@ -370,14 +371,14 @@ app.resizable  (False,False)
 LBL_fxexp_WIND_PRINC_zz_lblexp_1 	= Label(app,                                           ###label - expandida
 					 text       =  "CONFIGURAÇÕES",
 				   	 background =  blue_violet,                         
-					 font       =  'Arial 20 bold',
+					 font       =  esc_LBL_vGB_20,
 					 width      =  400)
 LBL_fxexp_WIND_PRINC_zz_lblexp_1.pack()
 
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1  = Button(app,                                       ###botao - funçao (formulario ativar leitura)
 						   text       =  "ATIVAR LEITURA",
 						   background =  branco_antigo, foreground = verde_limao,   
-						   font       =  esc_BT_vGB_1,
+						   font       =  esc_BT_vGB_15,
 						   width      =  20,
 						   command    =  FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA)
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1.pack(pady = 40)
