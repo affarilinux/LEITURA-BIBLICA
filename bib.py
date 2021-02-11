@@ -24,9 +24,17 @@ slate_bue_1     = "#836FFF"
 BT_desabilitado = "disabled"
 BT_ativo        = "normal"
 
+############################################### CARACTERISTICA ESCRITA
+
+esc_BT_vGB_1 = "Arial 15 bold"
+esc_BT_vGB_2 = "Arial 10 bold"
+
 ######################################################################################################################
-####################################################janela ativar leitura 1 - pai- janela ativar leitura##############
+				#######################janela ativar leitura 1 - pai- janela ativar leitura##############
 ######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
 def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 ######################################################funcoes ternarias LH1############################################
 
@@ -99,8 +107,11 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 		LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "LEITURA APAGADO\n COM SUCESSO"
 
 		TOP_TERC_SWITH_STATE_PT1()
+
+########################################################################################################################
 ########################################janela inserir dados- pai janela secundaria######
-###########################################################################################
+#########################################################################################################################
+
 	top_ativar_leitura_BD_1 = Toplevel()                                     ####top level
 	top_ativar_leitura_BD_1.title        ("ATIVAR LEITURA 1")
 	top_ativar_leitura_BD_1.geometry     ("400x200")                         #lar x alt
@@ -170,7 +181,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 	
 	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1 = Button(top_ativar_leitura_BD_1,                            ###botao - função(função_criação de dados)
 								text        =  "SALVAR",
-								font        =  'Arial 10 bold',           
+								font        =  esc_BT_vGB_1,           
 								foreground  =  verde_limao,
 								command     =  BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA1)
 	BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1.place(x = 230, y = 18, width = 90 )
@@ -192,7 +203,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 	BT_vrd_WIND_TERC_zz_btvrd_t1 = Button(top_ativar_leitura_BD_1,                           ###botao - função()
 							text        = 	"APAGAR LEITURA",
-							font        =   'Arial 10 bold',            
+							font        =   esc_BT_vGB_2,            
 							foreground  =   verde_limao,
 							command     =   BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1 )
 	BT_vrd_WIND_TERC_zz_btvrd_t1.place(x = 230, y = 120, width = 150 )
@@ -204,8 +215,22 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 ############################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
 
-	                                    ######################janela ativar leitura - pai- janela principal##################
+
+###############################################################################################################################
+									##################### janela ativar leitura 2 - pai- janela ativar leitura##################
+################################################################################################################################
+################################################################################################################################
+################################################################################################################################
+
+def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2():	
+	print("ola")      
+
 ################################################################################################################################2
+									######################janela ativar leitura - pai- janela principal##################
+#################################################################################################################################
+#################################################################################################################################
+#################################################################################################################################
+
 def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 #######################################################################funcoes secundaria########################
 
@@ -261,8 +286,12 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 					LBL_vrv_WIND_SECUNDARIO_zz_lblvrv_A_1["text"] = "TOTAL AO DIA: %d" %TOTAL_CALCULO_sSALVAR
 
-	#######################################
-	top_ativar_leitura = Toplevel()############################## ATIVADO ATRAVEZ DO BOTAO JANELA PRINCIPAL###
+	
+	##################################################################################################################################
+	############################## ATIVADO ATRAVEZ DO BOTAO JANELA PRINCIPAL###
+	##################################################################################################################################
+
+	top_ativar_leitura = Toplevel()
 	top_ativar_leitura.title       ("ATIVAR LEITURA")
 	top_ativar_leitura.geometry    ("400x400")                   #lar x alt
 	top_ativar_leitura.configure   (background = madeira_robusta)      
@@ -289,7 +318,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1  = Button(top_ativar_leitura,                     				 ###botao - função( função ativar leitura)
 								  text        = 	"CALCULAR",
-								  font        =  'Arial 10 bold',            
+								  font        =  esc_BT_vGB_2,            
 								  foreground  =   verde_limao,
 								  command     =   BASIC_SEC_CHAMADABTINT_cc_CALCULO_sSALVAR)
 	BTN_fx_WIND_SECUNDARIO_zz_btninterno_A_1.place(x = 230, y = 48, width = 90 )
@@ -310,16 +339,29 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1 = Button(top_ativar_leitura,                       					 ###botao - função(ativar leitura 1 db)
 					text        =  "ATIVAR LEITURA 1",
 					background  =  branco_antigo, foreground = verde_limao,  
-					font        =  'Arial 15 bold',
+					font        =  esc_BT_vGB_1,
 					width       = 	20,
 					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1.place(x= 70, y = 180)
-#
-################################
+
+	BTN_fx_WIND_SECUDARIO_zz_btnext_a_2 = Button(top_ativar_leitura,                       					 ###botao - função(ativar leitura 2 db)
+					text        =  "ATIVAR LEITURA 2",
+					background  =  branco_antigo, foreground = verde_limao,  
+					font        =  esc_BT_vGB_1,
+					width       = 	20,
+					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2)
+	BTN_fx_WIND_SECUDARIO_zz_btnext_a_2.place(x= 70, y = 230)
+	
+#################################
 	top_ativar_leitura.mainloop()#########################********************FIM************************#
 
 ##################################################################################################################1
-app = Tk()                        #####################janela principal####################                        
+											#####################janela principal####################
+###################################################################################################################
+###################################################################################################################
+###################################################################################################################
+
+app = Tk()                                                
 app.title      ("LEITURA BIBLICA")                                                         ####tela principal-menus
 app.geometry   ("400x500")               #lar x alt                                                  
 app.configure  (background = slate_bue_1)                          
@@ -335,7 +377,7 @@ LBL_fxexp_WIND_PRINC_zz_lblexp_1.pack()
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1  = Button(app,                                       ###botao - funçao (formulario ativar leitura)
 						   text       =  "ATIVAR LEITURA",
 						   background =  branco_antigo, foreground = verde_limao,   
-						   font       =  'Arial 15 bold',
+						   font       =  esc_BT_vGB_1,
 						   width      =  20,
 						   command    =  FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA)
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1.pack(pady = 40)
