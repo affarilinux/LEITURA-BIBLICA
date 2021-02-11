@@ -9,7 +9,8 @@ bib             = 31102                      #QUANTIDADE DE VERSICULO BIBLICO
 qt_dias_ativar  = 0                          # iniciar variavel
 qt_dias_max     = 3285                       # ativar maximo de dias de leitura
 qt_dias_min     = 0                          # dias minimo para ser ativado
-############################cores
+
+###############################################cores
 madeira_robusta = "#DEB887"
 verde_limao     = "#32CD32"
 alice_blue      = "#F0F8FF"
@@ -18,8 +19,14 @@ branco_antigo   = "#FAEBD7"
 blue_violet     = "#8A2BE2"
 slate_bue_1     = "#836FFF"
 
-####################################################janela ativar leitura 1 - pai- janela ativar leitura#######
-################################################################################################################
+###############################################BOTOES ATIVAÇÃO
+
+BT_desabilitado = "disabled"
+BT_ativo        = "normal"
+
+######################################################################################################################
+####################################################janela ativar leitura 1 - pai- janela ativar leitura##############
+######################################################################################################################
 def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 ######################################################funcoes ternarias LH1############################################
 
@@ -102,12 +109,12 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 ############################################FUNCOES DE HABILITACAO
 	def TOP_TERC_SWITH_STATE_PT1():
-		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = "normal"
-		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = "disabled"
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = BT_ativo
+		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = BT_desabilitado
 
 	def TOP_TERC_SWITH_STATE_PT2():
-		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = "disabled"
-		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = "normal"
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha1["state"] = BT_desabilitado
+		BT_vrd_WIND_TERC_zz_btvrd_t1["state"] = BT_ativo
 
 #####################################################FUNCOES DO SISTEMA DO TOP
 	def FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1():
@@ -307,8 +314,8 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					width       = 	20,
 					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_1.place(x= 70, y = 180)
-	
-#################################
+#
+################################
 	top_ativar_leitura.mainloop()#########################********************FIM************************#
 
 ##################################################################################################################1
@@ -324,7 +331,7 @@ LBL_fxexp_WIND_PRINC_zz_lblexp_1 	= Label(app,                                  
 					 font       =  'Arial 20 bold',
 					 width      =  400)
 LBL_fxexp_WIND_PRINC_zz_lblexp_1.pack()
-						
+
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1  = Button(app,                                       ###botao - funçao (formulario ativar leitura)
 						   text       =  "ATIVAR LEITURA",
 						   background =  branco_antigo, foreground = verde_limao,   
@@ -332,6 +339,6 @@ BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1  = Button(app,                             
 						   width      =  20,
 						   command    =  FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA)
 BTN_fx_WIND_PRINC_func_TKEXT_zz_bt_1.pack(pady = 40)
-
+						
 ########################
 app. mainloop()################################**********FIM***********************#
