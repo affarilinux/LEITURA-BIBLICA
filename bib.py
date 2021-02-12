@@ -52,7 +52,6 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 			CALCULO_INTEIRO_LH1	  = (total_vers_bib_BB_LH1) // total_dias_lei_BB_LH1
 			CALCULO_PARCIAL_LH1   = total_vers_bib_BB_LH1   %  total_dias_lei_BB_LH1
-
 		except ZeroDivisionError:
 			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
 
@@ -96,7 +95,10 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 					BD_SIST_TERC_nn_SALdata_imp.close()  #sair do banco
 
 					LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS SALVO COM SUCESSO"
-					TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK
+
+					TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK interno
+
+					FUNCAO_TOP_AUTOEXE_WIND_SEGUNDO_zz_BT2_ATIV_LEI_LH1_2()
 
 	def BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1():                                                                                  # apagar do banco
 		BD_ap_1 = sqlite3.connect('app_banco.db')
@@ -145,13 +147,16 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 			if cfc[0] == 1:
 				TOP_TERC_SWITH_STATE_PT2()
 				
+			banco_rei.close()
+
 		except TypeError:
 			
 			TOP_TERC_SWITH_STATE_PT1()
 					
-			banco_rei.close()
+			
 
 	def FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH1():
+
 		try:
 			BD_imp_lh1     = sqlite3.connect('app_banco.db')
 			CUR_exe_bd_lh1 = BD_imp_lh1.cursor()
@@ -213,7 +218,7 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 
 	FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH1()
 
-############################
+#############################################
 	top_ativar_leitura_BD_1.mainloop()                           #*************************FIM****************************
 
 
@@ -223,8 +228,19 @@ def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_1():
 ################################################################################################################################
 ################################################################################################################################
 
-def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2():	
-	print("ola")      
+def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2():
+
+########################################################################################################################
+########################################janela inserir dados- pai janela secundaria######
+#########################################################################################################################
+
+	top_ativar_leitura_BD_2 = Toplevel()   
+	top_ativar_leitura_BD_2.title      ("ATIVAR LEITURA 2")
+	top_ativar_leitura_BD_2.geometry   ("400x200")
+	top_ativar_leitura_BD_2.configure  (background = madeira_robusta)
+	top_ativar_leitura_BD_2.resizable  (False,False)
+	###########################################
+	top_ativar_leitura_BD_2.mainloop()
 
 ################################################################################################################################2
 									######################janela ativar leitura - pai- janela principal##################
@@ -253,7 +269,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 		BD_SIST_SEC_nn_APPBANCO.close()
 
 	BASIC_SEC_AUTOEXE_cc_CRIAR_BANCO()                                                                     # chamar tabela   
-
 
 	def BASIC_SEC_CHAMADABTINT_cc_CALCULO_sSALVAR():                                                
 		total_versiculo_biblico_sSALVAR = bib
@@ -298,11 +313,36 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 	top_ativar_leitura.configure   (background = madeira_robusta)      
 	top_ativar_leitura.resizable   (False,False)
 
-	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1  = Label(top_ativar_leitura,                             		 ###label-expandida
-								 text        =  "CALCULO DE VERSICULO POR DIA",
-								 background  =  deep_skyblue,                   
-								 font        =  esc_LBL_vGB_15,                    
-								 width       =   400)                   
+####################################################FUNÇÃO ORGANIZACAO DE SISTEMA
+
+	def FUNCAO_TOP_AUTOEXE_WIND_SEGUNDO_zz_BT2_ATIV_LEI_LH1_2():
+
+		try:
+			BD_TOP_LH1    = sqlite3.connect('app_banco.db')
+			cur_bd_lh1      = BD_TOP_LH1.cursor()
+
+			sql_rei_data_lh1 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
+			cur_bd_lh1.execute(sql_rei_data_lh1)
+			cfc          = cur_bd_lh1.fetchone()
+
+			if cfc[0] == 1:
+				BTN_fx_WIND_SECUDARIO_zz_btnext_a_2["state"] = BT_ativo
+				
+			BD_TOP_LH1.close()
+
+		except TypeError:
+
+			BTN_fx_WIND_SECUDARIO_zz_btnext_a_2["state"] = BT_desabilitado
+			
+		except NameError:
+			BTN_fx_WIND_SECUDARIO_zz_btnext_a_2["state"] = BT_desabilitado
+		
+			
+	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1     = Label(top_ativar_leitura,                             		 ###label-expandida
+								text        	=  "CALCULO DE VERSICULO POR DIA",
+								background  	=  deep_skyblue,                   
+								font       		=  esc_LBL_vGB_15,                    
+								width       	=   400)                   
 	LBL_fxexp_WIND_SECUNDARIO_zz_lblexp_A_1.pack(pady = 5)
 	
 				
@@ -352,8 +392,10 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					width       = 	20,
 					command     =   FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2)
 	BTN_fx_WIND_SECUDARIO_zz_btnext_a_2.place(x= 70, y = 230)
+
+	FUNCAO_TOP_AUTOEXE_WIND_SEGUNDO_zz_BT2_ATIV_LEI_LH1_2()
 	
-#################################
+#####################################
 	top_ativar_leitura.mainloop()#########################********************FIM************************#
 
 ##################################################################################################################1
