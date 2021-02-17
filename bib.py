@@ -81,14 +81,17 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 				elif total_dias_lei_BB_LH1 < qt_dias_max or total_dias_lei_BB_LH1 > qt_dias_min:
 
+						id_at_lei_1 = 1
 						BD_SIST_TERC_nn_SALdata_imp = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
 						CURSOR_DB_EXE_lh1 = BD_SIST_TERC_nn_SALdata_imp.cursor()                                                            # processo de banco
 
-						inserir_valordb_calc_LH1     = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
-						variav_valor_calc_SQLDATA_LH1 = (CALCULO_INTEIRO_LH1, CALCULO_PARCIAL_LH1, total_dias_lei_BB_LH1)                   # variaveis das funções de calculo
+						inserir_valordb_calc_LH1     = "INSERT INTO  ativar_leitura ( id_ativar_leitura, leitura_dia, leitura_final, qt_dias) VALUES (?,?,?,?)"# campos da tabela, valores a ser inserido
+						#                                                                     1               2            3            4
+						variav_valor_calc_SQLDATA_LH1 = (id_at_lei_1, CALCULO_INTEIRO_LH1, CALCULO_PARCIAL_LH1, total_dias_lei_BB_LH1)                   # variaveis das funções de calculo
+						#                                   1                    2                 3                    4 
 
 						CURSOR_DB_EXE_lh1.execute(inserir_valordb_calc_LH1, variav_valor_calc_SQLDATA_LH1)                                  # execução da chamada das funções
-					
+
 						BD_SIST_TERC_nn_SALdata_imp.commit()                                                                                #SALVAR
 
 					
@@ -267,11 +270,12 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 				elif total_dias_lei_BB_LH2 < qt_dias_max or total_dias_lei_BB_LH2 > qt_dias_min:
 
+						id_at_lei_2 = 2
 						BD_SIST_TERC_nn_SALdata_imp2 = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
 						CURSOR_DB_EXE_lh2 = BD_SIST_TERC_nn_SALdata_imp2.cursor()                                                            # processo de banco
 
-						inserir_valordb_calc_LH2     = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
-						variav_valor_calc_SQLDATA_LH2 = (CALCULO_INTEIRO_LH2, CALCULO_PARCIAL_LH2, total_dias_lei_BB_LH2)                   # variaveis das funções de calculo
+						inserir_valordb_calc_LH2     = "INSERT INTO  ativar_leitura ( id_ativar_leitura, leitura_dia, leitura_final, qt_dias) VALUES (?,?,?,?)"# campos da tabela, valores a ser inserido
+						variav_valor_calc_SQLDATA_LH2 = (id_at_lei_2, CALCULO_INTEIRO_LH2, CALCULO_PARCIAL_LH2, total_dias_lei_BB_LH2)                   # variaveis das funções de calculo
 
 						CURSOR_DB_EXE_lh2.execute(inserir_valordb_calc_LH2, variav_valor_calc_SQLDATA_LH2)                                  # execução da chamada das funções
 					
@@ -345,7 +349,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 		def FuncaoBase_SEC_AUTOEXE_ee_CRIAR_TABELA():
 
-			BD_SIST_SEC_nn_APPBANCO.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NOT NULL PRIMARY KEY , \
+			BD_SIST_SEC_nn_APPBANCO.execute('CREATE TABLE IF NOT EXISTS ativar_leitura (id_ativar_leitura integer NULL PRIMARY KEY , \
 											leitura_dia   integer  NULL, \
 											leitura_final integer  NULL, \
 											qt_dias       integer  NULL )')#existe tabela, se nao tiver cria
