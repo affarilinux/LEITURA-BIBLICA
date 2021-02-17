@@ -236,17 +236,103 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 	def FUNCAO_TERCIARIA_CHAMADABTEXT_vv_ATIVARLEITURA_PT_2():
 
+		def BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA2():
+
+			total_vers_bib_BB_LH2 = bib
+		
+			try:
+				total_dias_lei_BB_LH2 = qt_dias_ativar 
+				total_dias_lei_BB_LH2 = int(ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t2.get())
+
+				CALCULO_INTEIRO_LH2	  = (total_vers_bib_BB_LH2) // total_dias_lei_BB_LH2
+				CALCULO_PARCIAL_LH2   = total_vers_bib_BB_LH2   %  total_dias_lei_BB_LH2
+
+			except ZeroDivisionError:
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+
+			except ValueError:
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       								#$ERRO AO CLICAR EM VALOR NOME CARACTERE
+
+			except KeyboardInterrupt:
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+
+			except TypeError:
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+
+			else:	
+				total_dias_lei_BB_LH2
+
+				if   total_dias_lei_BB_LH2 > qt_dias_max:
+						LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
+
+				elif total_dias_lei_BB_LH2 < qt_dias_max or total_dias_lei_BB_LH2 > qt_dias_min:
+
+						BD_SIST_TERC_nn_SALdata_imp2 = sqlite3.connect('app_banco.db')                                                       #conectar ao banco de dados
+						CURSOR_DB_EXE_lh2 = BD_SIST_TERC_nn_SALdata_imp2.cursor()                                                            # processo de banco
+
+						inserir_valordb_calc_LH2     = "INSERT INTO  ativar_leitura ( leitura_dia, leitura_final, qt_dias) VALUES (?,?,?)"  # campos da tabela, valores a ser inserido
+						variav_valor_calc_SQLDATA_LH2 = (CALCULO_INTEIRO_LH2, CALCULO_PARCIAL_LH2, total_dias_lei_BB_LH2)                   # variaveis das funções de calculo
+
+						CURSOR_DB_EXE_lh2.execute(inserir_valordb_calc_LH2, variav_valor_calc_SQLDATA_LH2)                                  # execução da chamada das funções
+					
+						BD_SIST_TERC_nn_SALdata_imp2.commit()                                                                                #SALVAR
+
+					
+						def FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH2():
+							sql_visual_lh2 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "2" '
+							CURSOR_DB_EXE_lh2.execute(sql_visual_lh2)
+							cf         =  CURSOR_DB_EXE_lh2.fetchone()
+						
+							LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
+
+						FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH2()  
+					                                                                         
+						BD_SIST_TERC_nn_SALdata_imp2.close()  #sair do banco
+
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"] = "DADOS SALVO COM SUCESSO"
 	########################################################################################################################
 	########################################janela inserir dados- pai janela secundaria######
 	#########################################################################################################################
 
-		top_ativar_leitura_BD_2 = Toplevel()   
-		top_ativar_leitura_BD_2.title      ("ATIVAR LEITURA 2")				####top level
-		top_ativar_leitura_BD_2.geometry   ("400x200")						#lar x alt
-		top_ativar_leitura_BD_2.configure  (background = madeira_robusta)
-		top_ativar_leitura_BD_2.resizable  (False,False)
-		###########################################
-		top_ativar_leitura_BD_2.mainloop()######################################
+		top_ativar_leitura_BD_2 = Toplevel()                                     ####top level
+		top_ativar_leitura_BD_2.title        ("ATIVAR LEITURA 1")
+		top_ativar_leitura_BD_2.geometry     ("400x200")                         #lar x alt
+		top_ativar_leitura_BD_2.configure    (background = madeira_robusta)       
+		top_ativar_leitura_BD_2.resizable    (False,False)
+
+		######################################################################sistema do tk
+		LBL_fxbasic_WIND_TERC_zz_lblfx_t2    = Label(top_ativar_leitura_BD_2,                                     ###label - fixa
+								text         =  "QUANTIDADE  DE DIAS: ",
+								background   =  alice_blue,                        
+								font         =  esc_LBL_vGB_10,
+								width        =  25)
+		LBL_fxbasic_WIND_TERC_zz_lblfx_t2.place(y = 20)
+
+		ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t2 = Entry(top_ativar_leitura_BD_2)                                   ###entry++
+		ENTRY_TEXT_plano4_WIND_TERC_zz_entryinterno_t2.place(x = 185, y = 18, width = 40)
+
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha2 = Button(top_ativar_leitura_BD_2,                            ###botao - função(função_criação de dados)
+								text        =  "SALVAR",
+								font        =  esc_BT_vGB_15,           
+								foreground  =  verde_limao,
+								command     =  BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA2)
+		BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha2.place(x = 230, y = 18, width = 90 )
+
+
+		LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2    = Label(top_ativar_leitura_BD_2,                                 ###labe1 -- de funçao
+									text        =  "ESCOLHA DE 1 DIA ATÉ 3285 DIAS.",
+									font        =  esc_LBL_vGB_10,
+									background  =  madeira_robusta)                
+		LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2.place(y = 65)
+
+		LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2   = Label(top_ativar_leitura_BD_2,
+								font        = esc_LBL_vGB_10,
+								background  = madeira_robusta)
+		LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2.place(y = 130)
+
+
+		############################################# 
+		top_ativar_leitura_BD_2.mainloop()#############################    
 
 #################################################################################################################
 #######################################################################funcoes secundaria########################
