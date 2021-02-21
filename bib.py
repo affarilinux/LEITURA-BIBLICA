@@ -65,22 +65,31 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 				CALCULO_PARCIAL_LH1   = total_vers_bib_BB_LH1   %  total_dias_lei_BB_LH1
 
 			except ZeroDivisionError:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
 
 			except ValueError:
-				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       								#$ERRO AO CLICAR EM VALOR NOME CARACTERE
+
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       #$ERRO AO CLICAR EM VALOR NOME CARACTERE
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
 
 			except KeyboardInterrupt:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
 
 			except TypeError:
+				
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
-
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
 			else:	
 				total_dias_lei_BB_LH1
 
 				if   total_dias_lei_BB_LH1 > qt_dias_max:
+
 						LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS NÃO INSERIDO"
 
 				elif total_dias_lei_BB_LH1 < qt_dias_max or total_dias_lei_BB_LH1 > qt_dias_min:
 
@@ -103,7 +112,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 							sql_visual_lh1 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
 							CURSOR_DB_EXE_lh1.execute(sql_visual_lh1)
-
 							cf             =  CURSOR_DB_EXE_lh1.fetchone()
 						
 							LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
@@ -112,11 +120,29 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					                                                                         
 						BANCO_entrada_lh1_parte3.close()  #sair do banco
 
-						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]        = "DADOS SALVO COM SUCESSO"
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS SALVO COM SUCESSO"
 
 						TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK interno
 						TOPSEG_AUTOEXE_BT_zz_ativar_lh1()
-					
+			
+				"""def FUNCAO_VERIFICACAO_BANCO_DADOS_LH1():
+							
+							try:
+								BANCO_VERIFICACAO_LH1  = sqlite3.connect('app_banco.db')
+								CURSOR_verificacao_lh1 = BANCO_VERIFICACAO_LH1.cursor()
+
+								sql_verificar_lh1      = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1"'
+								CURSOR_verificao_lh1.execute(sql_verificar_lh1)
+								cfc_verificacao    	   = CURSOR_verificao_lh1.fetchone()
+
+								if cfc_verificacao[0]  == 1:
+									
+
+								BANCO_VERIFICACAO_LH1.close()
+							except NameError:
+								
+
+				FUNCAO_VERIFICACAO_BANCO_DADOS_LH1()	"""	
 		def BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1():     
 		                                                                             # apagar do banco
 			BANCO_apagar_lh1        = sqlite3.connect('app_banco.db')
@@ -173,7 +199,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 				sql_rei_data_lh1 	 		 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
 				CURSOR_sistema_habilitar_lh1.execute(sql_rei_data_lh1)
-
 				cfc              			 = CURSOR_sistema_habilitar_lh1.fetchone()
 
 				if cfc[0]       			 == 1:
@@ -192,7 +217,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 				sql_vis_lh_1   = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1" '
 				CURSOR_sistema_leituraimpressao_lh1.execute(sql_vis_lh_1)
-
 				csf_lh1        = CURSOR_sistema_leituraimpressao_lh1.fetchone()
 
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(csf_lh1[1],csf_lh1[2],csf_lh1[3])
