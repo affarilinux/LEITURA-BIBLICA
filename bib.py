@@ -67,22 +67,22 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 			except ZeroDivisionError:
 
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]    = ""
 
 			except ValueError:
 
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       #$ERRO AO CLICAR EM VALOR NOME CARACTERE
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]    = ""
 
 			except KeyboardInterrupt:
 
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]    = ""
 
 			except TypeError:
-				
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t1["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = ""
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]    = ""
 			else:	
 				total_dias_lei_BB_LH1
 
@@ -100,6 +100,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 						inserir_valordb_calc_LH1      	= "INSERT INTO  ativar_leitura ( id_ativar_leitura, leitura_dia, leitura_final, qt_dias) VALUES (?,?,?,?)"# campos da tabela, valores a ser inserido
 						#                                                                     1               2            3            4
+
 						variav_valor_calc_SQLDATA_LH1 	= (id_at_lei_1, CALCULO_INTEIRO_LH1, CALCULO_PARCIAL_LH1, total_dias_lei_BB_LH1)                   # variaveis das funções de calculo
 						#                                   1                    2                 3                    4 
 
@@ -120,29 +121,11 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					                                                                         
 						BANCO_entrada_lh1_parte3.close()  #sair do banco
 
-						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS SALVO COM SUCESSO"
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] 		 = "DADOS SALVO COM SUCESSO"
 
 						TOP_TERC_SWITH_STATE_PT2()###FUNÇÃO DO TK interno
 						TOPSEG_AUTOEXE_BT_zz_ativar_lh1()
 			
-				"""def FUNCAO_VERIFICACAO_BANCO_DADOS_LH1():
-							
-							try:
-								BANCO_VERIFICACAO_LH1  = sqlite3.connect('app_banco.db')
-								CURSOR_verificacao_lh1 = BANCO_VERIFICACAO_LH1.cursor()
-
-								sql_verificar_lh1      = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "1"'
-								CURSOR_verificao_lh1.execute(sql_verificar_lh1)
-								cfc_verificacao    	   = CURSOR_verificao_lh1.fetchone()
-
-								if cfc_verificacao[0]  == 1:
-									
-
-								BANCO_VERIFICACAO_LH1.close()
-							except NameError:
-								
-
-				FUNCAO_VERIFICACAO_BANCO_DADOS_LH1()	"""	
 		def BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_1():     
 		                                                                             # apagar do banco
 			BANCO_apagar_lh1        = sqlite3.connect('app_banco.db')
@@ -191,6 +174,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 		#############################################################################################
 		#####################################################FUNCOES DO SISTEMA DO TOP ao inicializar
+
 		def FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP1():
 		
 			try:
@@ -224,10 +208,10 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 				BANCO_sistema_leituraimpressao_lh1.close()
 
 			except AttributeError:
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS INEXISTENTE"
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]   = "DADOS INEXISTENTE"
 
 			except TypeError:
-				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"] = "DADOS INEXISTENTE"
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_1["text"]   = "DADOS INEXISTENTE"
 		
 		#############################################################################################
 		#############################################################################################
@@ -288,7 +272,7 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 		def BASIC_TERC_CHAMADABTINT_cc_CALCULO_SALVAR_dbTB_ATIVARLEITURA_LINHA2():
 
-			total_vers_bib_BB_LH2 = bib
+			total_vers_bib_BB_LH2     = bib
 		
 			try:
 				total_dias_lei_BB_LH2 = qt_dias_ativar 
@@ -298,22 +282,32 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 				CALCULO_PARCIAL_LH2   = total_vers_bib_BB_LH2   %  total_dias_lei_BB_LH2
 
 			except ZeroDivisionError:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "NÚMERO ZERO NÃO É PERMITIDO. \nESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = ""
 
 			except ValueError:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "CARACTERE NÃO PERMITIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "       								#$ERRO AO CLICAR EM VALOR NOME CARACTERE
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = ""
 
 			except KeyboardInterrupt:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "NÃO INFORMOU OS DADOS. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = ""
 
 			except TypeError:
+
 				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "DADO É INVÁLIDO. \n       ESCOLHA DE 1 DIA ATÉ 3285 DIAS. "
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = ""
 
 			else:	
 				total_dias_lei_BB_LH2
 
 				if   total_dias_lei_BB_LH2 > qt_dias_max:
+
 						LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "   ACIMA DE 3285 NÃO É VALIDO,\nDIGITE UM NÚMERO VALIDO."
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"] = "DADOS NÃO INSERIDO"
 
 				elif total_dias_lei_BB_LH2 < qt_dias_max or total_dias_lei_BB_LH2 > qt_dias_min:
 
@@ -323,7 +317,10 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 						CURSOR_DB_EXE_lh2             = BANCO_inserir_dados_lh2.cursor()                                                            # processo de banco
 
 						inserir_valordb_calc_LH2      = "INSERT INTO  ativar_leitura ( id_ativar_leitura, leitura_dia, leitura_final, qt_dias) VALUES (?,?,?,?)"# campos da tabela, valores a ser inserido
+						#                                                                    1               2              3             4
+
 						variav_valor_calc_SQLDATA_LH2 = (id_at_lei_2, CALCULO_INTEIRO_LH2, CALCULO_PARCIAL_LH2, total_dias_lei_BB_LH2)                   # variaveis das funções de calculo
+						#                                     1                  2               3                   4
 
 						CURSOR_DB_EXE_lh2.execute(inserir_valordb_calc_LH2, variav_valor_calc_SQLDATA_LH2)                                  # execução da chamada das funções
 					
@@ -333,7 +330,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 						def FuncaoBase_TERC_AUTOEXE_ee_IMPRIMIR_DADOSDB_TBLH2():
 							sql_visual_lh2 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "2" '
 							CURSOR_DB_EXE_lh2.execute(sql_visual_lh2)
-
 							cf             =  CURSOR_DB_EXE_lh2.fetchone()
 						
 							LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(cf[1],cf[2],cf[3])
@@ -342,7 +338,27 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 					                                                                         
 						BANCO_inserir_dados_lh2.close()  #sair do banco
 
-						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"] = "DADOS SALVO COM SUCESSO"
+						LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]        = "DADOS SALVO COM SUCESSO"
+
+						TOP_TERC_SWITH_STATE_PT2_a2()###FUNÇÃO DO TK interno
+						#TOPSEG_AUTOEXE_BT_zz_ativar_lh1()
+
+		def BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_2():
+			
+			BANCO_apagar_lh2        = sqlite3.connect('app_banco.db')
+			CURSOR_apagar_lh2  		= BANCO_apagar_lh2.cursor()
+
+			sql_rein2       		= 'DELETE FROM ativar_leitura WHERE id_ativar_leitura = 2'
+			CURSOR_apagar_lh2.execute(sql_rein2)
+
+			BANCO_apagar_lh2.commit()
+			BANCO_apagar_lh2.close()
+		
+			LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "ESCOLHA DE 1 DIA ATÉ 3285 DIAS."
+			LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = "LEITURA APAGADO\n COM SUCESSO"
+
+			TOP_TERC_SWITH_STATE_PT1_a2()
+			#TOPSEG_CHAMADABTEXT_zz_hab_bt2()
 
 	########################################################################################################################
 	########################################janela inserir dados- pai janela secundaria######
@@ -353,6 +369,66 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 		top_ativar_leitura_BD_2.geometry     ("400x200")                         #lar x alt
 		top_ativar_leitura_BD_2.configure    (background = madeira_robusta)       
 		top_ativar_leitura_BD_2.resizable    (False,False)
+
+		####################################################################################################################
+		####################################################################################################################
+		
+		###################################################################################
+		#############################################################FUNCOES DE HABILITACAO
+
+		def TOP_TERC_SWITH_STATE_PT1_a2():
+
+			BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha2["state"] = BT_ativo
+			BT_vrd_WIND_TERC_zz_btvrd_t2["state"] 			 = BT_desabilitado
+
+		def TOP_TERC_SWITH_STATE_PT2_a2():
+
+			BTN_vrv_WIND_TERC_zz_btvrv_ENTRY_linha2["state"] = BT_desabilitado
+			BT_vrd_WIND_TERC_zz_btvrd_t2["state"] 			 = BT_ativo
+
+		######################################################################################################################
+		######################################################################################################################
+
+		#############################################################################################
+		#####################################################FUNCOES DO SISTEMA DO TOP ao inicializar
+
+		def FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP2():
+		
+			try:
+				BANCO_sistema_habilitar_lh2  = sqlite3.connect('app_banco.db')
+				CURSOR_sistema_habilitar_lh2 = BANCO_sistema_habilitar_lh2.cursor()
+
+				sql_rei_data_lh2 	 		 = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "2" '
+				CURSOR_sistema_habilitar_lh2.execute(sql_rei_data_lh2)
+				cfc_fc2              		 = CURSOR_sistema_habilitar_lh2.fetchone()
+
+				if cfc_fc2[0]       		 == 2:
+					TOP_TERC_SWITH_STATE_PT2_a2()
+				
+				BANCO_sistema_habilitar_lh2.close()
+
+			except TypeError:
+				TOP_TERC_SWITH_STATE_PT1_a2()
+					
+		def FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH2():
+
+			try:
+				BANCO_sistema_leituraimpressao_lh2    = sqlite3.connect('app_banco.db')
+				CURSOR_sistema_leituraimpressao_lh2   = BANCO_sistema_leituraimpressao_lh2.cursor()
+
+				sql_vis_lh_2   = 'SELECT *FROM ativar_leitura where id_ativar_leitura = "2" '
+				CURSOR_sistema_leituraimpressao_lh2.execute(sql_vis_lh_2)
+				csf_lh2        = CURSOR_sistema_leituraimpressao_lh2.fetchone()
+
+				LBL_vrd_WIND_TERC_zz_lblimp_funcaolh1_t2["text"] = "  QUANTIDADE DIA:         {}\nQUANTIDADE FINAL:     {}\nQUANTIDADE DE DIAS: {}".format(csf_lh2[1],csf_lh2[2],csf_lh2[3])
+
+				BANCO_sistema_leituraimpressao_lh2.close()
+
+			except AttributeError:
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = "DADOS INEXISTENTE"
+
+			except TypeError:
+				LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2["text"]    = "DADOS INEXISTENTE"
 
 		##############################################################################################
 		##############################################################################################
@@ -388,6 +464,15 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 									background  = madeira_robusta)
 		LBL_vrd_WIND_TERC_zz_lblimp_fcbd_lh_2.place(y = 130)
 
+		BT_vrd_WIND_TERC_zz_btvrd_t2 	= Button(top_ativar_leitura_BD_2,                           ###botao - função()
+							text        = 	"APAGAR LEITURA",
+							font        =   esc_BT_vGB_10,            
+							foreground  =   verde_limao,
+							command     =   BASIC_TERC_CHAMADABTINT_cc_btapagar_bdlh_2 )
+		BT_vrd_WIND_TERC_zz_btvrd_t2.place(x = 230, y = 120, width = 150 )
+
+		FUNCAO_top_AUTOEXE_WIND_TERC_zz_fcTOP2()
+		FUNCAO_TOP_AUTOEXE_WIND_TERC_zz_fcBD_IMPRIMIR_LH2()
 
 		############################################# 
 		top_ativar_leitura_BD_2.mainloop()#############################    
@@ -614,7 +699,6 @@ def FUNCAO_SECUNDARIA_CHAMADABTEXT_vv_WINDOW_ATIVAR_LEITURA():
 
 		except TypeError:
 			FUNÇÃO_TOP_AUTOEXE_WINDSEG_EXEFUNCAO_zz_HABILITAR_BT2_LH1()
-			
 			
 		except NameError:
 			FUNÇÃO_TOP_AUTOEXE_WINDSEG_EXEFUNCAO_zz_HABILITAR_BT2_LH1()
